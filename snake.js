@@ -1,7 +1,7 @@
 var GAME_CONFIG = {
-      width:400
-    , height:400
-    , background:'green'
+      width:600
+    , height:600
+    , background:'#9F9'
     , fps:100
     , GAME_STATE_READY:0
     , GAME_STATE_RUNNING:1
@@ -9,14 +9,15 @@ var GAME_CONFIG = {
     , GAME_STATE_DIE:3
     , GAME_STATE_END:4
     , GAME_STATE:0
-    , thisStage:1
+    , thisStage:0
     , score:0
     , eatapple:0
+    , blockSize:20
 };
 
 var snake = {
-      width:10
-    , height:10
+      width:20
+    , height:20
     , head:0
     , dir:'stop'
     , speed:2
@@ -27,8 +28,8 @@ var snake = {
 var apple = {
       px:30
     , py:30
-    , width:10
-    , height:10
+    , width:20
+    , height:20
     , color:'red'
     , showArea:0
 };
@@ -65,7 +66,8 @@ function looper() {
         CTX.fillStyle = GAME_CONFIG.background;
         CTX.fillRect(0,0,GAME_CONFIG.width,GAME_CONFIG.height);
         CTX.fillStyle = 'black';
-        CTX.fillText("준비. SPACE BAR를 누르면 시작.", 100, 190);
+        CTX.fillText("SPACE BAR를 누르면 시작.", 200, 230);
+        CTX.fillText("방향키를 이용해 컨트롤 해주세요.", 200, 250);
     }
     else if ( GAME_CONFIG.GAME_STATE == GAME_CONFIG.GAME_STATE_RUNNING ) {
         moveSnake();
@@ -146,26 +148,31 @@ function moveSnake() {
 
 function showApple() {
     var x ,y,w,h;
+    var ran1 = Math.random();
+    var ran2 = Math.random();
     switch (apple.showArea) {
         case 0 :
-            x = 20 + Math.floor(Math.random() * 200);
-            y = 20 + Math.floor(Math.random() * 200);
+            x = GAME_CONFIG.blockSize + Math.floor(ran1 * GAME_CONFIG.width / 2);
+            y = GAME_CONFIG.blockSize + Math.floor(ran2 * GAME_CONFIG.height / 2);
             break;
         case 1 :
-            x = 200 + Math.floor(Math.random() * 180);
-            y = 20 + Math.floor(Math.random() * 200);
+            x = GAME_CONFIG.width / 2 + Math.floor(ran1 * GAME_CONFIG.width / 2) - GAME_CONFIG.blockSize;
+            y = GAME_CONFIG.blockSize + Math.floor(ran2 * GAME_CONFIG.height / 2);
             break;
         case 2 :
-            x = 20 + Math.floor(Math.random() * 200);
-            y = 200 + Math.floor(Math.random() * 180);
+            x = GAME_CONFIG.blockSize + Math.floor(ran1 * GAME_CONFIG.width / 2);
+            y = GAME_CONFIG.height / 2 + Math.floor(ran2 * GAME_CONFIG.height / 2) - GAME_CONFIG.blockSize;
             break;
         case 3 :
-            x = 200 + Math.floor(Math.random() * 180);
-            y = 200 + Math.floor(Math.random() * 180);
+            x = GAME_CONFIG.width / 2 + Math.floor(ran1 * GAME_CONFIG.width / 2)  - GAME_CONFIG.blockSize;
+            y = GAME_CONFIG.height / 2 + Math.floor(ran2 * GAME_CONFIG.height / 2) - GAME_CONFIG.blockSize;
             break;
     }
+    if ( x > 600 || y > 600 ) {
+        log.debug("APPLE (" + x + "," + y + ") / apple.showArea :" + apple.showArea);
+    }
     apple.showArea = 0 + Math.floor(Math.random() * 3);
-
+    
     if ( isHitBlock(x,y,apple.width,apple.height) ) {
         showApple();
     }

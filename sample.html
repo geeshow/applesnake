@@ -3,19 +3,36 @@
 <head>
     <meta charset='UTF-8' />
     <title>HTML5 GAME</title>
-    <script src="inputControll.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/jquery-3.1.0.js"></script>
+    <script src="js/Logger.js"></script>
+    <script src="inputControll.js?1111"></script>
     <script src="block.js"></script>
-    <script src="snake.js"></script>
+    <script src="snake.js?1111"></script>
 </head>
 <body>
-    <div style='width:400px;height:400px'>
-    <canvas id="canvas" width="400" height="400" 
-    style="position:absolute; top:0px; left:0px; border:solid 1px #000000"></canvas>
+<div id="head">
+    <div><h1>APPLE SNAKE</h1></div>
+</div>
+<div id="body">
+    <div id="menu">
+            <li><input type='text' id='score' style='width:50px'> score</li>
+            <li><input type='text' id='eatapple' style='width:50px'> eat</li>
+            <li><input type='text' id='stage' style='width:50px'> stage</li>
+            <div>SPACE BAR<br>PAUSE / RESUME / START</div>
+            <div>
+                DIRECTION KEY<br>UP / DOWN / LEFT / RIGHT
+            </div>
     </div>
-    <div style='float:left'>
-        score:<input type='text' id='score' style='width:50px'>
-        eat apple:<input type='text' id='eatapple' style='width:50px'>
-        stage:<input type='text' id='stage' style='width:50px'>
+    <div id="main">
+        <div style='width:610px;padding:10px;border:solid 1px #000;'>
+        <canvas id="canvas" width="600" height="600" style="position:relative; border:solid 1px #000000"></canvas>
+        </div>
     </div>
+
+    <div id="info">
+        
+    </div>
+</div>
 </body>
 </html>
