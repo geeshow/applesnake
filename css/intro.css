@@ -1,0 +1,137 @@
+body {
+    background-color: #000;
+    font-size: 1.5vw;
+}
+.game-stage-con {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: start;
+    perspective: 1000px;
+}
+
+@keyframes comeUp {
+    from {
+        transform: scale(0.0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
+}
+
+.game-intro-con {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 70vw;
+    padding-top: 4vw;
+    color: #ffffff;
+    overflow: hidden;
+    animation: comeUp 0.5s;
+    transition: 1s;
+}
+
+.game-title {
+    align-self: center;
+    font-family: "Consolas";
+    letter-spacing: 0.5vw;
+    margin-left: 0.5vw;
+}
+
+.game-desc {
+    color: #AAA;
+    white-space: pre;
+    text-align: center;
+}
+
+.how-to-play {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1vw;
+}
+
+.control-desc {
+    flex-grow: 1;
+}
+
+.intro-command {
+    align-self: center;
+    margin-top: 3vw;
+    animation: fadeInOut 0.3s infinite alternate;
+}
+
+@keyframes introStarX {
+    from {
+        transform: translateX(0vw);
+    }
+    to {
+        transform: translateX(-3vw);
+    }
+}
+
+@keyframes introStarY {
+    from {
+        transform: translateY(0.9vw);
+    }
+    to {
+        transform: translateY(2.9vw);
+    }
+}
+.intro-star {
+    position: absolute;
+    width: 200vw;
+    color: #aa0000;
+    background-color: #000;
+    font-width: bold;
+    font-size: 2vw;
+    flex-wrap: nowrap;
+    animation: introStarX 0.15s infinite linear;
+}
+
+.intro-star-top {
+    left: 0vw;
+    top: 2vw;
+    height: 1.2vw;
+    line-height: 1vw;
+    z-index: 1;
+}
+.intro-star-bottom {
+    left: 0vw;
+    top: 40vw;
+    height: 1vw;
+    margin-top: 0.5vw;
+    line-height: 1vw;
+    animation-direction: reverse;
+    z-index: 1;
+}
+
+.intro-star-left {
+    left: -0.2vw;
+    top: 2vw;
+    width: 1vw;
+    flex-wrap: wrap;
+    transform: rotateX(90deg);
+    line-height: 2vw;
+    animation-name: introStarY;
+}
+
+.intro-star-right {
+    left: 69vw;
+    top: 2vw;
+    width: 1vw;
+    flex-wrap: wrap;
+    transform: rotateX(90deg);
+    line-height: 2vw;
+    animation-name: introStarY;
+    animation-direction: reverse;
+}

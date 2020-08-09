@@ -36,7 +36,7 @@ function onKeydown(e) {
         switch ( e.keyCode ) {
             case 32 : // space
                 GAME_CONFIG.thisStage++;
-                GAME_CONFIG.eatapple = 0;
+                GAME_CONFIG.leftApple = 0;
                 snake.position = [{px:50, py:50}]; 
                 snake.head = 0;
                 snake.dir = 'stop';
