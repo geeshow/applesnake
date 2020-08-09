@@ -1,4 +1,4 @@
-var stageBlock = {
+const stageBlock = {
     stage1:function() {
         var blocks = [];
         blocks[blocks.length] = {

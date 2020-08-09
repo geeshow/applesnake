@@ -11,7 +11,7 @@ var GAME_CONFIG = {
     , GAME_STATE:0
     , thisStage:0
     , score:0
-    , eatapple:0
+    , leftApple:0
     , blockSize:20
 };
 
@@ -41,8 +41,8 @@ var inter;
 window.addEventListener("load", onGameLoad, false);
 window.addEventListener("keydown", onKeydown, false);
 function onGameLoad() {
-    document.getElementById('score').value = GAME_CONFIG.score;
-    document.getElementById('eatapple').value = GAME_CONFIG.eatapple;
+    document.getElementById('game-score').value = GAME_CONFIG.score;
+    document.getElementById('left-apple').value = GAME_CONFIG.leftApple;
     
     MY_CANVAS = document.getElementById("canvas");
     CTX = MY_CANVAS.getContext("2d");
@@ -53,7 +53,7 @@ function onGameLoad() {
 function onGameStart() {
     GAME_CONFIG.thisStage = 1;
     GAME_CONFIG.score=0;
-    GAME_CONFIG.eatapple=0;
+    GAME_CONFIG.leftApple=0;
     snake.dir = 'stop';
     snake.head = 0;
     snake.position = [{px:50, py:50}]; 
@@ -205,11 +205,11 @@ function checkEatApple() {
     var th = apple.height;
     if ( isHit(x, y, w, h, tx, ty, tw, th) ) {
         GAME_CONFIG.score++;
-        document.getElementById('score').value = GAME_CONFIG.score;
-        GAME_CONFIG.eatapple++;
-        document.getElementById('eatapple').value = GAME_CONFIG.eatapple;
+        document.getElementById('game-score').innerHTML = GAME_CONFIG.score;
+        GAME_CONFIG.leftApple--;
+        document.getElementById('left-apple').innerHTML = GAME_CONFIG.eatapple;
 
-        if ( GAME_CONFIG.eatapple == 10 ) {
+        if ( GAME_CONFIG.leftApple == 0 ) {
             GAME_CONFIG.GAME_STATE = GAME_CONFIG.GAME_STATE_NEXTSTAGE;
         }
         else {
