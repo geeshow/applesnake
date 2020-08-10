@@ -1,0 +1,37 @@
+.game-setup-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question-con {
+    display: none;
+    flex-wrap: wrap;
+    width: 60vw;
+    margin: 1vw;
+}
+
+.question-con-item1 {
+    display: flex;
+}
+.question {
+    text-align: right;
+    margin-left: 13vw;
+    margin-right: 1vw;
+}
+
+.answer {
+    width: auto;
+}
+
+.cursor {
+    width: 1vw;
+    border-bottom: solid 1px #eee;
+    animation: fadeInOut 0.1s linear infinite alternate;
+}
+
+.question-desc {
+    width: 50%;
+    white-space: pre;
+    margin-left: 16vw;
+}
