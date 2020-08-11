@@ -25,6 +25,16 @@ body {
     animation: comeUp 0.5s;
     transition: 1s;
 }
+
+@keyframes showDown {
+    from {
+        top: -50%;
+    }
+    to {
+        top: 40%;
+    }
+}
+
 @keyframes comeUp {
     from {
         transform: scale(0.0);

@@ -1,0 +1,64 @@
+.game-stage-con {
+    position: relative;
+    padding: 0;
+    color: #fff200;
+    font-weight: bold;
+}
+
+.stage-header {
+    background-color: #000aa6;
+    width: 80vw;
+    height: 2vw;
+}
+
+.stage-playground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 43vw;
+    border: solid 0.9vw #f55;
+}
+
+.game-message-con {
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    left: 29%;
+    top: 43%;
+    width: 42%;
+    height: 11%;
+}
+.game-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: #fff;
+    border: solid 0.9vw #fff;
+    background-color: #a00;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.game-message-hide-cube {
+    align-self: flex-end;
+    color: #fff;
+    /*background-color: #000aa6;*/
+    background-color: #f00;
+    width: 1vw;
+    height: 1vw;
+    opacity: 100;
+    border: solid 1px #008c9a;
+    z-index: 1;
+    animation: fadeInOut 1s forwards;
+}
+
+#game-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #000aa6;
+}

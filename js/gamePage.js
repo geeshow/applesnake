@@ -3,6 +3,12 @@ function GamePage(domId, loop = 0) {
     this.DOM = null;
 
     this.questionNumber = 1;
+    this.setupData = {
+        players: 1,
+        level: 1,
+        increaseYN : 'Y',
+        colorMode: 'C'
+    }
     if ( !domId || loop > 0 ) return false;
 
 }
@@ -36,21 +42,36 @@ GamePage.prototype.toString = function() {
 }
 
 GamePage.prototype.setupKeyHandler = function(e) {
-    console.log('keyHandler', e.key);
     if ( e.key === 'Enter') {
         const answer = document.querySelector(`#answer${this.questionNumber}`).innerHTML;
         switch (this.questionNumber) {
             case 1 :
-                ( answer === '1' || answer === '2' ) ? this.showNextQuestion() : this.removeAnswer();
+                if ( answer === '1' || answer === '2' ) {
+                    this.setupData.players = answer;
+                    this.showNextQuestion();
+                }
+                else this.removeAnswer();
                 break;
             case 2 :
-                ( parseInt(answer) >= '0' && parseInt(answer) <= '100' ) ? this.showNextQuestion() : this.removeAnswer();
+                if ( parseInt(answer) >= '0' && parseInt(answer) <= '100' ) {
+                    this.setupData.level = answer;
+                    this.showNextQuestion();
+                }
+                else this.removeAnswer();
                 break;
             case 3 :
-                ( answer.toUpperCase() === 'Y' || answer.toUpperCase() === 'N' ) ? this.showNextQuestion() : this.removeAnswer();
+                if ( answer.toUpperCase() === 'Y' || answer.toUpperCase() === 'N' ) {
+                    this.setupData.increaseYN = answer;
+                    this.showNextQuestion();
+                }
+                this.removeAnswer();
                 break;
             case 4 :
-                ( answer.toUpperCase() === 'M' || answer.toUpperCase() === 'C' ) ? this.finishSetup() : this.removeAnswer();
+                if ( answer.toUpperCase() === 'M' || answer.toUpperCase() === 'C' ) {
+                    this.setupData.colorMode = answer;
+                    this.finishSetup();
+                }
+                else this.removeAnswer();
                 break;
         }
     }
@@ -66,6 +87,18 @@ GamePage.prototype.setupKeyHandler = function(e) {
     }
 
     return this.isFinishSetup();
+}
+
+GamePage.prototype.stageKeyHandler = function(e) {
+    if ( e.code === 'Space') {
+        const messageDOM = document.querySelector('.game-message-con');
+        [...Array(40).keys()].forEach((item, index) => {
+            const cube = document.createElement('div');
+            cube.className = 'game-message-hide-cube';
+            cube.style.animationDelay = `${index/20}s`
+            messageDOM.appendChild(cube);
+        })
+    }
 }
 
 GamePage.prototype.showNextQuestion = function() {

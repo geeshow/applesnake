@@ -5,10 +5,12 @@ const GAME_STAGE = document.querySelector('#game-stage');
     const gameIntro = new GamePage('game-intro');
     const gameSetup = new GamePage('game-setup');
     const gamePrepare = new GamePage('game-prepare');
+    const gameStage = new GamePage('game-stage');
     let Game = {
-        INTRO: gameIntro,
-        SETUP: gameSetup,
-        PREPARE: gamePrepare,
+        PAGE_INTRO: gameIntro,
+        PAGE_SETUP: gameSetup,
+        PAGE_PREPARE: gamePrepare,
+        PAGE_STAGE: gameStage,
         INIT: 300,
         STAGE: 400,
         CURRENT: null,
@@ -20,7 +22,7 @@ const GAME_STAGE = document.querySelector('#game-stage');
         },
     }
 
-    Game.goPage(gameIntro);
+    Game.goPage(gameStage);
 
 
     // Object.defineProperty(Game, 'state', {
@@ -35,14 +37,18 @@ const GAME_STAGE = document.querySelector('#game-stage');
 
     window.addEventListener('keydown', (e)=> {
         switch ( Game.CURRENT ) {
-            case Game.INTRO :
-                Game.goPage(Game.SETUP);
+            case Game.PAGE_INTRO :
+                Game.goPage(Game.PAGE_SETUP);
                 break;
-            case Game.SETUP :
-                Game.SETUP.setupKeyHandler(e);
-                if ( Game.SETUP.isFinishSetup() ) {
-                    Game.goPage(Game.PREPARE)
+            case Game.PAGE_SETUP :
+                Game.PAGE_SETUP.setupKeyHandler(e);
+                if ( Game.PAGE_SETUP.isFinishSetup() ) {
+                    Game.goPage(Game.PAGE_PREPARE)
+                    setTimeout(() => {Game.goPage(Game.PAGE_STAGE)}, 3000);
                 }
+                break;
+            case Game.PAGE_STAGE :
+                Game.PAGE_STAGE.stageKeyHandler(e);
                 break;
             default :
                 break;
